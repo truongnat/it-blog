@@ -1,13 +1,12 @@
-import React, { PropsWithChildren, useState } from "react";
-import { menuList } from "shared";
-import Link from "next/link";
-import { classNames } from "utils";
-import { CiMenuFries } from "react-icons/ci";
-import { IoCloseOutline } from "react-icons/io5";
-import { Button } from "@geist-ui/core";
+import React, { useState } from "react"
+import Link from "next/link"
+import { CiMenuFries } from "react-icons/ci"
+import { IoCloseOutline } from "react-icons/io5"
+import { menuList } from "shared"
+import { classNames } from "utils"
 
-export default function AppDrawer({ children }: PropsWithChildren) {
-  const [state, setState] = useState(false);
+export default function AppDrawer() {
+  const [state, setState] = useState(false)
 
   return (
     <div className="flex flex-1 flex-col items-end sm:hidden">
@@ -34,8 +33,7 @@ export default function AppDrawer({ children }: PropsWithChildren) {
           >
             {menuList.map((m) => (
               <Link href={m.href} key={m.href}>
-                <Button
-                  type={"abort"}
+                <div
                   style={{
                     height: "unset",
                     minWidth: "unset",
@@ -49,12 +47,12 @@ export default function AppDrawer({ children }: PropsWithChildren) {
                   >
                     {m.title}
                   </span>
-                </Button>
+                </div>
               </Link>
             ))}
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

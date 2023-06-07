@@ -1,31 +1,31 @@
 export const menuList = [
   {
-    title: "Home",
+    title: "Trang chủ",
     href: "/",
   },
   {
-    title: "Blog",
+    title: "Bài viết",
     href: "/blog",
   },
   {
-    title: "Project",
+    title: "Dự án",
     href: "/project",
   },
   {
-    title: "About",
+    title: "Về tôi",
     href: "/about",
   },
   {
-    title: "Contact",
+    title: "Liên hệ",
     href: "/contact",
   },
-];
+]
 
 export const socialLink = {
   github: "https://github.com/truongnat",
   youtube: "https://www.youtube.com/channel/UCC0bvnJr_OuQr7MIcZ-xjwQ",
   telegram: "https://t.me/truongnat",
-};
+}
 
 export const siteMetadata = {
   title: "TruongDQ | Software Engineer",
@@ -34,9 +34,11 @@ export const siteMetadata = {
   siteUrl: "http:localhost:3000",
   ogType: "website",
   socialBanner: "/apple-touch-icon.png",
-} as const;
+} as const
 
 export const metadata = {
   title: "Truong DQ | Software Engineer",
   description: "My website created by TruongDQ",
-};
+}
+
+export const textTypes = ["text", "emphasis", "strong", "inlineCode"]

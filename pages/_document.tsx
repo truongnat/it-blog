@@ -30,7 +30,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en" className="scroll-smooth">
         <Head />
-        <body className={"container mx-auto bg-transparent text-white"}>
+        <body className={"container p-0 mx-auto bg-transparent text-white"}>
           <Main />
           <NextScript />
         </body>

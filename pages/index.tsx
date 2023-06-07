@@ -1,7 +1,7 @@
 "use client";
-import { siteMetadata, useMouseContext } from "shared";
+import { siteMetadata, useMouseContext } from "~/shared";
 import { TypeAnimation } from "react-type-animation";
-import { PageSEO } from "components";
+import { PageSEO } from "~/components";
 
 export default function Home() {
   const { cursorChangeHandler } = useMouseContext();

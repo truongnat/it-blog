@@ -1,14 +1,14 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { siteMetadata } from "shared";
+import Head from "next/head"
+import { useRouter } from "next/router"
+import { siteMetadata } from "~/shared"
 
 interface PageSEOProps {
-  title: string;
-  description?: string;
+  title: string
+  description?: string
 }
 
-export const PageSEO = ({ title, description }: PageSEOProps) => {
-  const router = useRouter();
+const PageSEO = ({ title, description }: PageSEOProps) => {
+  const router = useRouter()
   return (
     <Head>
       <title>{title}</title>
@@ -27,5 +27,7 @@ export const PageSEO = ({ title, description }: PageSEOProps) => {
         content={siteMetadata.siteUrl + siteMetadata.socialBanner}
       />
     </Head>
-  );
-};
+  )
+}
+
+export default PageSEO

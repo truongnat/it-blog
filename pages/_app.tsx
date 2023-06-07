@@ -1,11 +1,12 @@
-import "../styles/globals.css";
+import "~/styles/globals.css";
+import "~/styles/mdx.css";
 import "inter-ui/inter.css";
 import Head from "next/head";
 import { ReactElement } from "react";
 import { ThemeProvider, useTheme } from "next-themes";
 import { CssBaseline, GeistProvider } from "@geist-ui/core";
-import { siteMetadata } from "shared";
-import { RootLayout } from "layouts";
+import { siteMetadata } from "~/shared";
+import { RootLayout } from "~/layouts";
 
 export default function App({ Component, pageProps }: any) {
   return (

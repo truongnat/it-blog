@@ -1,1 +1,1 @@
-export * from "shared/context/mouseContext";
+export * from "./mouseContext";

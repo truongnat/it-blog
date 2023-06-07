@@ -1,2 +1,4 @@
-export { useMousePosition } from "shared/hooks/useMousePosition";
-export { useResize } from "shared/hooks/useResize";
+export { useMousePosition } from "./useMousePosition";
+export { useResize } from "./useResize";
+export { useMounted } from "./use-mounted";
+export { useLockBody } from "./use-lock-body";

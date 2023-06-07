@@ -12,11 +12,11 @@ export default function MetaHeader({
   children,
 }: MetaHeaderProps) {
   return (
-    <div>
-      <h1 className="text-5xl font-bold capitalize">{title}</h1>
+    <div className="pb-10">
+      <h1 className="text-4xl font-bold">{title}</h1>
       <p>{description}</p>
       {children}
-      <div className="divider"></div>
+      <div className="h-[1px] w-full border-t-[1px]"></div>
     </div>
   );
 }

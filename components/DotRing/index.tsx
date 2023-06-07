@@ -1,6 +1,8 @@
 "use client";
-import { useMouseContext, useMousePosition } from "shared";
+
 import React, { useCallback, useEffect, useRef } from "react";
+import { useMouseContext, useMousePosition } from "~/shared";
+
 import styles from "./DotRing.module.css";
 
 export default function DotRing() {
