@@ -27,7 +27,7 @@ export default function AppFooter() {
         </div>
       </div>
       <div>
-        <p>Copyright © {new Date().getFullYear()} - TruongDQ</p>
+        <p>Bản quyền © {new Date().getFullYear()} - TruongDQ</p>
       </div>
     </footer>
   );

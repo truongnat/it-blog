@@ -30,8 +30,10 @@ export type Project = {
   type: 'Project'
   title: string
   description?: string | undefined
-  date: IsoDateTimeString
+  fromDate: IsoDateTimeString
+  toDate: IsoDateTimeString
   image: string
+  checkList?: string[] | undefined
   /** MDX file body */
   body: MDX
   slug: string

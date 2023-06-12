@@ -52,13 +52,21 @@ export const Project = defineDocumentType(() => ({
     description: {
       type: "string",
     },
-    date: {
+    fromDate: {
+      type: "date",
+      required: true,
+    },
+    toDate: {
       type: "date",
       required: true,
     },
     image: {
       type: "string",
       required: true,
+    },
+    checkList: {
+      type: "list",
+      of: { type: "string" },
     },
   },
   computedFields,

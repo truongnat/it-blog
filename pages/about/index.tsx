@@ -8,6 +8,10 @@ export default function About() {
       <PageSEO title={"Về tôi"} />
       <RootLayout.Container>
         <MetaHeader title="Về tôi" />
+        <div>
+          Bản thân mỗi chúng ta đều là những câu chuyện, và tôi đang trên con
+          đường viết nên câu chuyện của chính mình {"<3"}.
+        </div>
       </RootLayout.Container>
     </>
   )

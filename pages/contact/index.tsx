@@ -8,6 +8,10 @@ export default function Contact() {
       <PageSEO title={"Liên hệ"} />
       <RootLayout.Container>
         <MetaHeader title="Liên hệ" />
+        <div>
+          Trang của tôi vẫn đang trong quá trình cập nhật, rất xin lỗi vì sự bất
+          tiện này!
+        </div>
       </RootLayout.Container>
     </>
   )
