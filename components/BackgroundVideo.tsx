@@ -14,7 +14,7 @@ export default function BackgroundVideo() {
   }, [])
   return (
     <div className={"fixed bottom-0 right-0 z-[-1] min-h-full min-w-full"}>
-      <video
+      {/* <video
         autoPlay
         muted
         loop
@@ -24,7 +24,7 @@ export default function BackgroundVideo() {
         ref={ref}
       >
         <source src="static/videos/background.mp4" type="video/mp4" />
-      </video>
+      </video> */}
     </div>
   )
 }

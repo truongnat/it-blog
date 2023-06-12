@@ -1,0 +1,164 @@
+---
+title: Vẽ bản đồ Việt Nam với D3
+description: Cách vẽ bản đồ Việt Nam với D3/TopoJson/React.
+image: /images/blog/draw-map-d3-svg/demo-vn.png
+date: "2023-06-12"
+---
+
+### Mở đầu
+
+Trước khi bắt đầu với bài viết blog đầu tiên của tôi, với 1 người con `máu đỏ da vàng`, tôi cảm thấy rất nhức nhối với những sản phẩm phần mềm được lên báo rầm rộ gần đây với việc bản đồ Việt Nam yêu dấu của chúng ta không hề có tồn tại 2 Quần đảo `Hoàng Sa` và `Trường Sa`. 
+
+Vì thế nên bài blog đầu tiên của tôi sẽ hướng dẫn về cách mà tôi đã làm 1 sản phảm phần mềm có bản đồ Việt Nam bao gồm 2 Quần đảo `Hoàng Sa` và `Trường Sa` như thế nào nhé!
+
+
+### Yêu cầu
+
+- Có hiểu biết sơ lược về [React](https://react.dev/).
+- Biết cách sử dụng thư viện [D3](https://d3js.org/).
+
+### Tài nguyên
+
+- [Gadm](https://gadm.org/download_country_v3.html).
+- [Mapshaper](https://mapshaper.org/).
+- [Vite](https://vitejs.dev/).
+
+
+
+### Triển khai
+
+
+##### Bước 1: Chuẩn bị data vẽ lên bản đồ Việt Nam.
+
+- Truy cập trang `Gadm` và tải dữ liệu của Việt Nam về.
+    <Image
+      src="/images/blog/draw-map-d3-svg/demo-1.png"
+      width="718"
+      height="404"
+      alt="Image"
+    />
+- Click vào `Shapefile` để tải file zip xuống.
+  - Các file sẽ được phân theo loại 0, 1, 2, 3 tuỳ thuộc theo độ chi tiết mà bạn muốn.
+  - `0` thường đề cập đến quốc gia hoặc khu vực.
+  - `1` thường đề cập đến các khu vực hành chính lớn trong quốc gia hoặc khu vực (chẳng hạn như tiểu bang hoặc tỉnh).
+  - `2` thường đề cập đến các khu vực hành chính nhỏ hơn trong các khu vực lớn hơn (chẳng hạn như quận hoặc huyện).
+  - `3` thường đề cập đến các khu vực hành chính nhỏ hơn (chẳng hạn như đô thị hoặc thị trấn).
+
+- Sau khi đã tải file và giải nén, truy cập vào trang `Mapshaper` và import các file vào (chú ý là hãy lựa chọn các file cùng 1 loại, ví dụ các file dành cho type 0, 1, 2 như mô tả ở trên).
+- Khi các bạn đã import thành công các file trên thì bản đồ ngay lập tức sẽ hiện ra.
+
+> Chú ý: Khi tới bước đưa các file từ `Gadm` vào `Mapshaper` bạn có thể giảm độ chi tiết của bản đồ bằng cách bấm vào `Simplify` và giảm tỉ lệ phần trăm xuống (tầm 10%).
+
+
+    <Image
+      src="/images/blog/draw-map-d3-svg/demo-2.png"
+      width="718"
+      height="404"
+      alt="Image"
+    />
+
+- Khâu cuối trong việc chuẩn bị dữ liệu là export ra file với định dạng `TopoJSON`.
+
+    <Image
+      src="/images/blog/draw-map-d3-svg/demo-3.png"
+      width="718"
+      height="404"
+      alt="Image"
+    />
+
+##### Bước 2: Tiến hành code thôi nào.
+
+- Cài đặt 2 thư viện cần thiết là `d3` và `topojson-client`
+
+`
+yarn add d3 topojson-client
+`
+
+
+```js
+import { useEffect } from "react";
+import * as d3 from "d3";
+import * as topoJson from "topojson-client";
+import sourceJson from "./gadm36_VNM_1.json";
+
+function setMapProjection(payload) {
+  return d3
+    .geoMercator()
+    .precision(0)
+    .fitExtent(
+      [
+        [0, 0],
+        [300, 600],
+      ],
+      payload
+    );
+}
+
+function App() {
+  useEffect(() => {
+    const geojson = topoJson.feature(
+      sourceJson,
+      sourceJson.objects.gadm36_VNM_1
+    );
+
+    const geoGenerator = d3.geoPath().projection(setMapProjection(geojson));
+
+    const svg = d3
+      .select("#content")
+      .append("svg")
+      .attr("width", 300)
+      .attr("height", 600);
+
+    svg
+      .selectAll("path")
+      .data(geojson.features)
+      .enter()
+      .append("path")
+      .attr("d", geoGenerator)
+      .attr("fill", (d) => getColorByAttribute(d)) // Set fill color dynamically
+      .attr("stroke", "white")
+      .attr("stroke-width", 0.5);
+  }, []);
+
+  // Custom function to determine color based on feature attributes
+  const getColorByAttribute = (feature) => {
+    console.log(feature);
+    const attributeValue = feature.properties.NAME_1;
+
+    if (String(attributeValue).startsWith("T")) {
+      return "rgb(17, 202, 113)";
+    } else if (String(attributeValue).startsWith("N")) {
+      return "rgb(255, 235, 56)";
+    } else {
+      return "rgb(238, 0, 51)";
+    }
+  };
+
+  return <div id="content"></div>;
+}
+
+export default App;
+
+```
+
+> Các bạn có thể thay đổi chiều dài và rộng theo yêu cầu.
+
+- Nhưng khoan, có gì đó thiếu thiếu, ^^ à hoá ra là chúng ta thiếu mất Quần đảo Hoàng Sa, Trường Sa, không phải do tôi quên đâu, mà là do dữ liệu khi ta tải về không tồn tại, để tôi giải thích nhé.
+
+> Thật ra là việc “nhiều quốc gia có tranh chấp các thực thể” trong khu vực Spralty Island (Trường Sa) và “Tranh chấp chủ quyền của Trung Quốc và Việt Nam” đối với Paracel Island (Hoàng Sa) chính là nguyên nhân mà trên phần mềm bản đồ của Google Map, Google Inc, hoặc các tổ chức liên quan cung cấp bản đồ đã không sử dụng cụm từ địa danh “Quần đảo Hoàng Sa” và “Quần đảo Hoàng sa” dẫn tới việc không có dữ liệu của 2 Quần đảo trực thuộc Việt Nam.
+
+> Với vấn đề trên, chúng ta sẽ giải quyết như thế nào? Có 1 vài giải pháp như sau:
+
+- Trong `Gadm` cũng có dữ liệu về 2 Quần đảo Hoàng Sa và Trường Sa, tuy nhiên lại tách biệt ra 2 file riêng, vì thế chúng ta cần phải thêm 1 bước là merge 3 file vào với nhau, nhưng từ đó lại sảy ra 1 vấn đề, vì Hoàng Sa Trường Sa là quần đảo nên diện tích của 2 quần đảo này rất lớn, nếu các bạn vẽ vào thì tỉ lệ của bản đồ Việt Nam sẽ bé đi rất nhiều.
+- Vì cách trên áp dụng sẽ gây nhiều khó khăn trong UI/UX, nên các bạn có thể sử dụng 2 svg tượng trưng và css absolute 2 quần đảo này cho đúng vị trí.
+- Ngoài ra cũng sẽ có những cách hay hơn nhưng do kiến thức hạn hẹp nên chỉ tạm thời có 2 giải pháp trên.
+
+
+### Kết thúc
+
+- Có rất nhiều cách để vẽ được các dạng bản đồ nhưng cách trên thì các bạn có thể tuỳ biến, không chỉ vẽ được cho nước Việt Nam.
+- Giải pháp ở đây cũng chưa hẳn là đã tối ưu nên các bạn cân nhắc nhé.
+- Nếu các bạn cần chi tiết hơn về ý thứ nhất, merge 3 file của 2 quần đảo Hoàng Sa và Trường Sa vào với nhau, thì tôi sẽ viết tiếp 1 bài mô tả kỹ hơn về nó.
+- Trong bài tiếp theo thì tôi sẽ hướng dẫn vẽ bản đồ Việt Nam ở mobile `React Native` và cách tối ưu sao cho không ảnh hưởng tới perfomance.
+- Xin cảm ơn các độc giả và mong bài viết trên có thể giúp ích cho mọi người.
+- Có bất kỳ thắc mắc nào vui lòng liên hệ với tôi qua telegram bên dưới.

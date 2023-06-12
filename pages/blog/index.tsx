@@ -33,7 +33,7 @@ export default function Blog() {
                     alt={post.title}
                     width={804}
                     height={452}
-                    className="rounded-md border bg-muted transition-colors"
+                    className="h-[452px] rounded-md border bg-transparent object-contain transition-colors"
                     priority={index <= 1}
                   />
                 )}
