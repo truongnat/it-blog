@@ -93,7 +93,7 @@ export default function Page({ blog }) {
         )}
       >
         <Icons.chevronLeft className="mr-2 h-4 w-4" />
-        See all blogs
+        Xem tất cả bài viết
       </Link>
       <div>
         {blog?.date && (
@@ -101,7 +101,7 @@ export default function Page({ blog }) {
             dateTime={blog.date}
             className="block text-sm text-muted-foreground"
           >
-            Published on {formatDate(blog.date)}
+            Xuất bản {formatDate(blog.date)}
           </time>
         )}
         <h1 className="mt-2 inline-block font-heading text-4xl leading-tight lg:text-5xl">
@@ -124,7 +124,7 @@ export default function Page({ blog }) {
       <div className="flex justify-center py-6 lg:py-10">
         <Link href="/blog" className={cn(buttonVariants({ variant: "ghost" }))}>
           <Icons.chevronLeft className="mr-2 h-4 w-4" />
-          See all blogs
+          Xem tất cả bài viết
         </Link>
       </div>
     </article>

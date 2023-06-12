@@ -10,9 +10,14 @@ export default function AppHeader() {
 
   return (
     <header
-      className={"flex items-center justify-end py-6 sm:px-10 md:px-20 lg:px-40"}
+      className={
+        "flex items-center justify-end py-6 sm:px-10 md:px-20 lg:px-40"
+      }
     >
-      <div className="hidden flex-1 sm:flex items-center justify-end space-x-10" {...bindEvent}>
+      <div
+        className="hidden flex-1 items-center justify-end space-x-10 sm:flex"
+        {...bindEvent}
+      >
         {menuList.map((m) => (
           <Link
             href={m.href}

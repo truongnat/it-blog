@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:https": "next dev --https --key ./key.pem --cert ./cert.pem",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -45,6 +44,8 @@
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.0.2",
     "@svgr/webpack": "^8.0.1",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-tailwindcss": "^3.12.1",
     "file-loader": "^6.2.0",
     "mdast-util-toc": "^6.1.1",
     "prettier": "^2.8.8",

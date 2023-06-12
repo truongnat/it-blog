@@ -1,4 +1,3 @@
-import { CssBaseline } from "@geist-ui/core";
 import Document, {
   DocumentContext,
   DocumentInitialProps,
@@ -6,14 +5,15 @@ import Document, {
   Html,
   Main,
   NextScript,
-} from "next/document";
+} from "next/document"
+import { CssBaseline } from "@geist-ui/core"
 
 class MyDocument extends Document {
   static async getInitialProps(
     ctx: DocumentContext
   ): Promise<DocumentInitialProps> {
-    const initialProps = await Document.getInitialProps(ctx);
-    const styles = CssBaseline.flush();
+    const initialProps = await Document.getInitialProps(ctx)
+    const styles = CssBaseline.flush()
 
     return {
       ...initialProps,
@@ -23,20 +23,20 @@ class MyDocument extends Document {
           {styles}
         </>
       ),
-    };
+    }
   }
 
   render() {
     return (
       <Html lang="en" className="scroll-smooth">
         <Head />
-        <body className={"container p-0 mx-auto bg-transparent text-white"}>
+        <body className={"container mx-auto bg-transparent p-0 text-white"}>
           <Main />
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }
 
-export default MyDocument;
+export default MyDocument

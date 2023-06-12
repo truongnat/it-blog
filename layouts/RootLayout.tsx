@@ -13,7 +13,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <AppFooter />
       </div>
       <DotRing />
-      <BackgroundVideo />
     </MouseContextProvider>
   )
 }
