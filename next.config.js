@@ -8,7 +8,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    domains: ["avatars.githubusercontent.com",'welcome.peanut-ft.com'],
   },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   webpack: (config, { dev, isServer }) => {
@@ -35,6 +35,12 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  i18n: {
+    locales: ['en-US', 'vi-VN'],
+    defaultLocale: 'en-US',
+    localeDetection: false,
+  },
+  trailingSlash: true,
 }
 
-module.exports = withBundleAnalyzer(withContentlayer(nextConfig))
+module.exports = withContentlayer(nextConfig)

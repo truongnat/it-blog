@@ -29,7 +29,7 @@ export const socialLink = {
 
 export const siteMetadata = {
   title: "TruongDQ | Software Engineer",
-  theme: "system",
+  theme: "dark",
   email: "truongdq.dev@gmail.com",
   siteUrl: "http:localhost:3000",
   ogType: "website",
@@ -42,3 +42,8 @@ export const metadata = {
 }
 
 export const textTypes = ["text", "emphasis", "strong", "inlineCode"]
+
+export const appLocale = {
+  VI: 'vi-VN',
+  EN: 'en-US'
+}

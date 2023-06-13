@@ -1,10 +1,8 @@
 import { PropsWithChildren } from "react"
-import { AppFooter, AppHeader, BackgroundVideo, DotRing } from "~/components"
-import { MouseContextProvider } from "~/shared"
+import { AppFooter, AppHeader } from "~/components"
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <MouseContextProvider>
       <div className={"flex min-h-screen flex-col"}>
         <AppHeader />
         <main id="content" className={"flex flex-1"}>
@@ -12,8 +10,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
         </main>
         <AppFooter />
       </div>
-      <DotRing />
-    </MouseContextProvider>
   )
 }
 
