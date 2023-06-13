@@ -1,4 +1,5 @@
 const { withContentlayer } = require("next-contentlayer")
+const withImages = require("next-images")
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
@@ -8,7 +9,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["avatars.githubusercontent.com",'welcome.peanut-ft.com'],
+    domains: ["avatars.githubusercontent.com", "welcome.peanut-ft.com"],
   },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   webpack: (config, { dev, isServer }) => {
@@ -36,11 +37,11 @@ const nextConfig = {
     appDir: true,
   },
   i18n: {
-    locales: ['en-US', 'vi-VN'],
-    defaultLocale: 'en-US',
+    locales: ["en-US", "vi-VN"],
+    defaultLocale: "en-US",
     localeDetection: false,
   },
   trailingSlash: true,
 }
 
-module.exports = withContentlayer(nextConfig)
+module.exports = withImages(withContentlayer(nextConfig))
