@@ -10,6 +10,16 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ["avatars.githubusercontent.com", "truongdq.com"],
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   webpack: (config, { dev, isServer }) => {
