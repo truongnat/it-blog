@@ -44,4 +44,4 @@ const nextConfig = {
   trailingSlash: true,
 }
 
-module.exports = withBundleAnalyzer(withImages(withContentlayer(nextConfig)))
+module.exports = withBundleAnalyzer(withContentlayer(nextConfig))
