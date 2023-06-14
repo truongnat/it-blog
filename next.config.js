@@ -9,17 +9,9 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["avatars.githubusercontent.com", "truongdq.com"],
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "**",
-      },
-      {
-        protocol: "https",
-        hostname: "**",
-      },
-    ],
+    domains: ["avatars.githubusercontent.com", "truongdq.com", "localhost"],
+    loader: "custom",
+    loaderFile: "./image-loader.js",
   },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   webpack: (config, { dev, isServer }) => {
