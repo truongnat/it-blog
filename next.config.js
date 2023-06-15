@@ -38,11 +38,11 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  i18n: {
-    locales: ["en-US", "vi-VN"],
-    defaultLocale: "en-US",
-    localeDetection: false,
-  },
+  // i18n: {
+  //   locales: ["en-US", "vi-VN"],
+  //   defaultLocale: "en-US",
+  //   localeDetection: false,
+  // },
   trailingSlash: true,
 }
 
